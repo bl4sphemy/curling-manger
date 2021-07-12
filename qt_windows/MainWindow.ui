@@ -14,7 +14,7 @@
    <string>Curling League Manger</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -42,6 +42,20 @@
           <widget class="QPushButton" name="main_save_button">
            <property name="text">
             <string>Save</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="main_import_button">
+           <property name="text">
+            <string>Import</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="main_export_button">
+           <property name="text">
+            <string>Export</string>
            </property>
           </widget>
          </item>

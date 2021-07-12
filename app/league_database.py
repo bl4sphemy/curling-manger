@@ -75,6 +75,7 @@ class LeagueDatabase:
                 rename(file_name, file_name + ".backup")
             with open(file_name, mode='xb') as f:
                 pickle.dump(self, f)
+                print(f)
                 f.close()
         except (FileNotFoundError, FileExistsError) as e:
             print("ugh, sorry, it would be better to use the logging framework here but I don't want to go into it")
@@ -92,7 +93,7 @@ class LeagueDatabase:
     def import_league(self, league_name, file_name):
         try:
             with open(file_name, newline='') as infile:
-                league = League(self.next_oid(), league_name)
+                league_in = League(self.next_oid(), league_name)
                 reader = csv.reader(infile, delimiter=',')
                 next(reader, None)  # skip the headers
                 for row in reader:
@@ -103,8 +104,8 @@ class LeagueDatabase:
                     tm = TeamMember(self.next_oid(), member, email)
                     t = Team(self.next_oid(), name)
                     t.add_member(tm)
-                    league.add_team(t)
-                    self.leagues.append(league)
+                    league_in.add_team(t)
+                    self.leagues.append(league_in)
         except (FileNotFoundError, FileExistsError) as e:
             print("ugh, sorry, it would be better to use the logging framework here but I don't want to go into it")
             # Check league here

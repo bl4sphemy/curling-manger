@@ -19,6 +19,7 @@ class MainWindow(QtBaseWindow, UI_MainWindow):
         self.db1 = LeagueDatabase()
         self.main_load_button.clicked.connect(self.load_button_clicked)
         self.main_save_button.clicked.connect(self.save_button_clicked)
+        # Moved the the imports/export buttons and methds here per Dr S's discussion in canvas
         self.main_import_button.clicked.connect(self.import_button_clicked)
         self.main_export_button.clicked.connect(self.export_button_clicked)
         self.main_delete_button.clicked.connect(self.delete_button_clicked)
@@ -46,7 +47,12 @@ class MainWindow(QtBaseWindow, UI_MainWindow):
         self.update_ui()
 
     def export_button_clicked(self):
-        pass
+        row = self.main_list_widget.currentRow()
+        league_name = self.db1.leagues[row].name
+        dialog = QFileDialog()
+        filename = str(dialog.getOpenFileName(filter="*.csv")[0])
+        self.db1.export_league(league_name, filename)
+
 
     def delete_button_clicked(self):
         dialog = QMessageBox()
@@ -56,7 +62,6 @@ class MainWindow(QtBaseWindow, UI_MainWindow):
         yes_button = dialog.addButton("Yes", QMessageBox.ButtonRole.YesRole)
         dialog.addButton("No", QMessageBox.ButtonRole.NoRole)
         current = self.main_list_widget.currentRow()
-        # current = self.main_list_widget.currentItem()
         dialog.exec()
         if dialog.clickedButton() == yes_button:
             del self.db1.leagues[current]
@@ -67,7 +72,6 @@ class MainWindow(QtBaseWindow, UI_MainWindow):
     def edit_button_clicked(self):
         row = self.main_list_widget.currentRow()
         edit_window = LeagueEditor(self.db1, row)
-        #edit_window = LeagueEditor(self.db1.leagues[row], self.db1, row)
         edit_window.exec()
 
     def add_button_clicked(self):

@@ -66,7 +66,8 @@ class MainWindow(QtBaseWindow, UI_MainWindow):
 
     def edit_button_clicked(self):
         row = self.main_list_widget.currentRow()
-        edit_window = LeagueEditor(self.db1.leagues[row], self.db1)
+        edit_window = LeagueEditor(self.db1, row)
+        #edit_window = LeagueEditor(self.db1.leagues[row], self.db1, row)
         edit_window.exec()
 
     def add_button_clicked(self):

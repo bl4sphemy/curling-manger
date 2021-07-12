@@ -26,7 +26,7 @@ class LeagueEditor(QtBaseWindow, UI_MainWindow):
         yes_button = dialog.addButton("Yes", QMessageBox.ButtonRole.YesRole)
         dialog.addButton("No", QMessageBox.ButtonRole.NoRole)
         current = self.league_list_widget.currentRow()
-        self.tmp_league._teams[current]
+        print(self.tmp_league._teams[current])
         dialog.exec()
         if dialog.clickedButton() == yes_button:
             del self.tmp_league._teams[current]
@@ -35,6 +35,8 @@ class LeagueEditor(QtBaseWindow, UI_MainWindow):
             dialog.close()
 
     def edit_button_clicked(self):
+        print(self.tmp_league)
+        print(self.db)
         #row = self.league_list_widget.currentRow()
         #for i in self.db.leagues:
         #   if i.name == self.league:

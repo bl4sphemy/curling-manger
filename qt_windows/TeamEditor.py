@@ -5,15 +5,16 @@ from app.CurlingLeagueManager import Team, TeamMember
 UI_MainWindow, QtBaseWindow = uic.loadUiType('TeamEditor.ui')
 
 class TeamEditor(QtBaseWindow, UI_MainWindow):
-    def __init__(self, team_object, parent=None):
+    def __init__(self, team_object, db_obj, parent=None):
         super().__init__(parent)
         self._last_oid = 0
         self.setupUi(self)
         self.tmp_team = team_object
+        self.tmp_db = db_obj
         self.team_delete_btn.clicked.connect(self.delete_button_clicked)
         self.team_update_btn.clicked.connect(self.update_button_clicked)
         self.team_add_btn.clicked.connect(self.add_button_clicked)
-        self.update_ui()
+        #self.update_ui()
 
 
     def delete_button_clicked(self):

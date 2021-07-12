@@ -35,16 +35,16 @@ class LeagueEditor(QtBaseWindow, UI_MainWindow):
             dialog.close()
 
     def edit_button_clicked(self):
-        print(self.tmp_league)
-        print(self.db)
+        row = self.league_list_widget.currentRow()
+        edit_window = TeamEditor(self.tmp_league._teams[row], self.db)
+        edit_window.exec()
+
+        #print(self.db)
         #row = self.league_list_widget.currentRow()
         #for i in self.db.leagues:
         #   if i.name == self.league:
         #team_obj = self.league_holder._teams[row]
-        #team_obj.members()
-        #edit_window = TeamEditor(team_obj)
-        #edit_window.exec()
-        # print(league)
+
 
     def add_button_clicked(self):
         self.tmp_league.add_team(self.team_name_line.text())

@@ -4,6 +4,7 @@ from PyQt5 import uic, QtWidgets
 UI_MainWindow, QtBaseWindow = uic.loadUiType('LeagueEditor.ui')
 from qt_windows.TeamEditor import TeamEditor
 
+
 class LeagueEditor(QtBaseWindow, UI_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -24,14 +25,15 @@ class LeagueEditor(QtBaseWindow, UI_MainWindow):
         pass
 
     def edit_button_clicked(self):
-        #row = self.league_list_widget.currentRow()
-        #league = self.database.leagues[row]
+        # row = self.league_list_widget.currentRow()
+        # league = self.database.leagues[row]
         edit_window = TeamEditor()
         edit_window.exec()
-        #print(league)
+        # print(league)
 
     def add_button_clicked(self):
         pass
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

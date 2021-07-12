@@ -12,7 +12,7 @@ setup(
     author_email='brp0010@auburn.edu',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    install_requires=['PyQt5', 'PyQT5-tools', 'yagmail'],
+    install_requires=['PyQt5', 'PyQT5-tools', 'yagmail', 'pickle', 'csv'],
     packages=[
         'app',
         'qt_windows',

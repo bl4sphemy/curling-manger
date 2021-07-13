@@ -89,12 +89,23 @@ class LeagueDatabase:
     Add this loaded league to the list of leagues.  If an error occurs while loading a league, 
     display a message on the console.
     """
-
-    def import_league(self, league_name, file_name):
+    def import_league(self, row_in, file_name):
         try:
             with open(file_name, newline='') as infile:
-                league_in = League(self.next_oid(), league_name)
-                reader = csv.reader(infile, delimiter=',')
+                reader2 = csv.reader(infile, delimiter=',')
+                next(reader2, None)  # skip the headers
+                team_arr = []
+                name_arr = []
+                for row in reader2:
+                    li = list(row)
+                    name = li[0]
+                    if name not in name_arr:
+                        name_arr.append(name)
+                for i in name_arr:
+                    t = Team(self.next_oid(), i)
+                    team_arr.append(t)
+            with open(file_name, newline='') as infile2:
+                reader = csv.reader(infile2, delimiter=',')
                 next(reader, None)  # skip the headers
                 for row in reader:
                     li = list(row)
@@ -102,18 +113,16 @@ class LeagueDatabase:
                     member = li[1]
                     email = li[2]
                     tm = TeamMember(self.next_oid(), member, email)
-                    t = Team(self.next_oid(), name)
-                    t.add_member(tm)
-                    league_in.add_team(t)
-                    self.leagues.append(league_in)
+                    for i in team_arr:
+                        if name == i.name:
+                            i.members.append(tm)
+                for n in team_arr:
+                    self.leagues[row_in]._teams.append(n)
+                print(self.leagues[row_in]._teams)
+
         except (FileNotFoundError, FileExistsError) as e:
             print("ugh, sorry, it would be better to use the logging framework here but I don't want to go into it")
-            # Check league here
-            # for l in self.leagues:
-            #    for team in l.teams:
-            #        print(team.name)
-            #        for member in team.members:
-            #            print(member)
+
 
     """             
     Write the specified league to a CSV formatted file.  
@@ -122,22 +131,19 @@ class LeagueDatabase:
     If an error occurs while writing a league, display a message on the console.
     """
 
-    def export_league(self, league, file_name):
+    def export_league(self, row_in, file_name):
         fields = ['Team_name', 'Member_name', 'Member_email']
         try:
             with open(file_name, 'w', newline='', encoding='utf-8') as outfile:
                 writer = csv.writer(outfile, delimiter=',')
                 writer.writerow(fields)
-                for l in self.leagues:
-                    if l.name == league:
-                        for team in l.teams:
-                            tn = team.name
-                            for member in team.members:
-                                tup = (tn, member._name, member._email)
-                                # tup = tuple([(tn, member._name, member._email) for member in team.members])
-                                writer.writerow(tup)
-                    else:
-                        print("league not found in database")
+                for team in self.leagues[row_in]._teams:
+                    tn = team.name
+                    print(team)
+                    for member in team.members:
+                        print(member._name)
+                        tup = (tn, member._name, member._email)
+                        writer.writerow(tup)
         except (FileNotFoundError, FileExistsError) as e:
             print("ugh, sorry, it would be better to use the logging framework here but I don't want to go into it")
 

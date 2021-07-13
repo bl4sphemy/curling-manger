@@ -40,18 +40,19 @@ class MainWindow(QtBaseWindow, UI_MainWindow):
 
     def import_button_clicked(self):
         row = self.main_list_widget.currentRow()
-        league_name = self.db1.leagues[row].name
+        #league_name = self.db1.leagues[row].name
         dialog = QFileDialog()
         filename = str(dialog.getOpenFileName(filter="*.csv")[0])
-        self.db1.import_league(league_name, filename)
-        self.update_ui()
+        #self.db1.import_league(league_name, filename)
+        self.db1.import_league(row, filename)
+
 
     def export_button_clicked(self):
         row = self.main_list_widget.currentRow()
-        league_name = self.db1.leagues[row].name
+        #league_name = self.db1.leagues[row].name
         dialog = QFileDialog()
         filename = str(dialog.getOpenFileName(filter="*.csv")[0])
-        self.db1.export_league(league_name, filename)
+        self.db1.export_league(row, filename)
 
 
     def delete_button_clicked(self):

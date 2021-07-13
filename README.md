@@ -8,3 +8,11 @@ which created the dist/curling-manager-1.0.0.tar.gz archive.
 
 The import button on the mainWindow requires a league to be added and selescted in the list widget. If you try to 
 add import without it you wil get an index error as the import requires a league name and filename. 
+
+Import File: test_database2.csv
+
+Export File: test_outdb.csv
+
+The sessinos are persistent from window to window. The only issue seems to be the 'Load' method. I was working on that
+before the deadline. 
+

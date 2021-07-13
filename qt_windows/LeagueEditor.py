@@ -16,7 +16,7 @@ class LeagueEditor(QtBaseWindow, UI_MainWindow):
         self.league_delete_btn.clicked.connect(self.delete_button_clicked)
         self.league_edit_btn.clicked.connect(self.edit_button_clicked)
         self.league_add_btn.clicked.connect(self.add_button_clicked)
-        #self.update_ui()
+        self.update_ui()
 
     def delete_button_clicked(self):
         dialog = QMessageBox()

@@ -18,3 +18,4 @@ before the deadline.
 
 Application modules are under the app package. QT/GUI files are under qt_windows package.
 
+NOTE: I'm really not sure what is wrong with my load method. I'm able to create a league, and import the teams from my CSV using import. I can 'Save' using pickle, and have even used hexedit to verify that my LeagueDatbase object was saveed to the .dat file. No errors are throw when I 'Load' and I'm returning the unpickled object using pickle.load() to my cls._sole_instace of the LeagueDatabase object. However, when I check the leagues list for the objects they're empty. 

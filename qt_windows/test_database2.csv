@@ -1,5 +1,9 @@
 Team_name,Member_name,Member_email
+<<<<<<< HEAD
 Blasters,Brian,aether@gmail.com
+=======
+Blasters,Brian,ether@gmail.com
+>>>>>>> dd1d5246d91db3ecc53ca0af4f524b45c0201753
 Blasters,Tim,aether@gmail.com
 Lazers,Jake,test@email.com
 Lazers,Steve,test1@email.com

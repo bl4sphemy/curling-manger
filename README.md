@@ -16,3 +16,5 @@ Export File: test_outdb.csv
 The sessinos are persistent from window to window. The only issue seems to be the 'Load' method. I was working on that
 before the deadline. 
 
+Application modules are under the app package. QT/GUI files are under qt_windows package.
+
